@@ -4,11 +4,25 @@ import * as yup from "yup";
 
 
 export default function FormComp(){
+
+    const loginValidationSchema = yup.object({
+        email:yup
+        .string()
+        .email("Please enter valid email")
+        .required("Email is required"),
+        password:yup.
+        string()
+        .min(8,({min})=> `Password must be at least ${min} characters`)
+        .required("Password is required"),
+    })
+
+
     return(
         <>
         <Formik
             initialValues={{email:'',password:''}}
             onSubmit={values=>console.log(values)}
+            validationSchema={loginValidationSchema}
         >
         { ({handleChange, handleBlur, handleSubmit, values, errors, touched })=> (
         <View>
