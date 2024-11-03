@@ -1,4 +1,4 @@
-import { Text, TextInput, View, StyleSheet, Button } from "react-native";
+import { Text, TextInput, View, StyleSheet, Button, KeyboardAvoidingView, ScrollView, Platform } from "react-native";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
 
@@ -26,7 +26,11 @@ export default function FormComp(){
 
 
     return(
-        <>
+        <KeyboardAvoidingView
+            behavior={ Platform.OS === 'ios'?'padding':'position'}
+            style={{flex:1}}
+        >
+        <ScrollView>
         <Formik
             initialValues={{email:'',password:'',age:'',message:''}}
             onSubmit={values=>console.log(values)}
@@ -64,7 +68,7 @@ export default function FormComp(){
                 numberOfLines={7}
             />
 
-<Field
+            <Field
                 component={CustomInput}
                 name="a"
                 placeholder="Enter your message"
@@ -73,7 +77,7 @@ export default function FormComp(){
             />
 
 
-<Field
+            <Field
                 component={CustomInput}
                 name="b"
                 placeholder="Enter your message"
@@ -82,24 +86,13 @@ export default function FormComp(){
             />
 
 
-<Field
+            <Field
                 component={CustomInput}
                 name="c"
                 placeholder="Enter your message"
                 multiline={true}
                 numberOfLines={7}
             />
-
-
-<Field
-                component={CustomInput}
-                name="d"
-                placeholder="Enter your message"
-                multiline={true}
-                numberOfLines={7}
-            />
-
-
 
 
             {/* <TextInput
@@ -137,7 +130,8 @@ export default function FormComp(){
         </View>
         )}
         </Formik>
-        </>
+        </ScrollView>
+        </KeyboardAvoidingView>
     )
 }
 
