@@ -1,7 +1,9 @@
 import { Text, TextInput, View, StyleSheet, Button } from "react-native";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import * as yup from "yup";
 
+
+import CustomInput from "./utils/input.custom";
 
 export default function FormComp(){
 
@@ -14,6 +16,9 @@ export default function FormComp(){
         string()
         .min(8,({min})=> `Password must be at least ${min} characters`)
         .required("Password is required"),
+        age:yup
+        .number()
+        .required("Age is required"),
     })
 
 
@@ -24,9 +29,33 @@ export default function FormComp(){
             onSubmit={values=>console.log(values)}
             validationSchema={loginValidationSchema}
         >
-        { ({handleChange, handleBlur, handleSubmit, values, errors, touched })=> (
+        { ({ handleSubmit })=> (
         <View>
-            <TextInput
+
+            <Field
+                component={CustomInput}
+                name="email"
+                placeholder="Enter your email"
+                keyboardType="email-address"
+            />
+
+            <Field
+                component={CustomInput}
+                name="password"
+                placeholder="Enter your password"
+                secureTextEntry={true}
+            />
+
+            <Field
+                component={CustomInput}
+                name="age"
+                placeholder="Enter your age"
+                keyboardType="numeric"
+            />
+
+
+
+            {/* <TextInput
                 style={styles.inputStyle}
                 placeholder="Enter your email"
                 onChangeText={handleChange('email')}
@@ -38,9 +67,9 @@ export default function FormComp(){
                 <Text style={styles.errorLabel}>
                     {errors.email}
                 </Text>
-            }
+            } */}
             
-            <TextInput
+            {/* <TextInput
                 style={styles.inputStyle}
                 placeholder="Enter your password"
                 onChangeText={handleChange('password')}
@@ -52,7 +81,7 @@ export default function FormComp(){
                 <Text style={styles.errorLabel}>
                     {errors.password}
                 </Text>
-            }
+            } */}
 
             <Button
                 title="Submit"
