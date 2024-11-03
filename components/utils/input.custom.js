@@ -13,6 +13,7 @@ export default function CustomInput({
             <TextInput
                 style={[
                     styles.inputStyle,
+                    props.multiline && styles.isMultiline,
                     inputError && styles.inputError
                 ]}
                 value={value}
@@ -42,12 +43,15 @@ const styles = StyleSheet.create({
     inputError:{
         borderColor:'red'
     },
+    isMultiline:{
+        minHeight:100,
+        verticalAlign:'top'
+    },
     inputStyle:{
         borderRadius:10,
-        height:50,
         borderWidth:1,
         borderColor:'grey',
-        paddingLeft:20,
+        padding:10,
         fontSize:15,
         marginBottom:10
     }

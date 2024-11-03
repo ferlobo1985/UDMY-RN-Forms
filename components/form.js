@@ -19,13 +19,16 @@ export default function FormComp(){
         age:yup
         .number()
         .required("Age is required"),
+        message:yup
+        .string()
+        .required("Message is required"),
     })
 
 
     return(
         <>
         <Formik
-            initialValues={{email:'',password:''}}
+            initialValues={{email:'',password:'',age:'',message:''}}
             onSubmit={values=>console.log(values)}
             validationSchema={loginValidationSchema}
         >
@@ -52,6 +55,50 @@ export default function FormComp(){
                 placeholder="Enter your age"
                 keyboardType="numeric"
             />
+
+            <Field
+                component={CustomInput}
+                name="message"
+                placeholder="Enter your message"
+                multiline={true}
+                numberOfLines={7}
+            />
+
+<Field
+                component={CustomInput}
+                name="a"
+                placeholder="Enter your message"
+                multiline={true}
+                numberOfLines={7}
+            />
+
+
+<Field
+                component={CustomInput}
+                name="b"
+                placeholder="Enter your message"
+                multiline={true}
+                numberOfLines={7}
+            />
+
+
+<Field
+                component={CustomInput}
+                name="c"
+                placeholder="Enter your message"
+                multiline={true}
+                numberOfLines={7}
+            />
+
+
+<Field
+                component={CustomInput}
+                name="d"
+                placeholder="Enter your message"
+                multiline={true}
+                numberOfLines={7}
+            />
+
 
 
 
